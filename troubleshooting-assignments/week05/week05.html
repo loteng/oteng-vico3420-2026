@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5 Troubleshooting</title>
+</head>
+<body>
+
+    <div id="secret-msg"></div>
+
+    <script>
+        let answer = prompt("You must be 18 years and older to view this information. What is your age in years?");
+
+        let secretMessage == "<em>Never going to give you up/Never gonna let you down/Never gonna run around and desert you...</em>";
+
+        if (answer > 18) {
+            document.getElementById("secret-msg").innerHTML = "<p>Great! I'm glad you are " / answer + " years old and that is old enough to see this message:</p>";
+            document.getElementById("secret-msg").innerHTML += "<p>" + secretMessage + "</p>";
+        }
+        else if answer < 0) {
+            document.getElementById("secret-msg").innerHTML = "<p>You can't be " + answer + " years old! That's impossible!</p>";
+        }
+        else if (answer < 18 && answer > 0) {
+            document.getElementById("secret-msg").innerHTML = "<p>You are " + answer + " years old and are not old enough to see the message!</p>";
+        }
+        else {
+            document.getElementById("secret-msg").innerHTML = "<p>Age cannot be detirmined. Message is not displayed.</p>";
+        }
+    </script>
+    
+</body>
+</html>
