@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 Troubleshooting Assignment</title>
+    <link rel="stylesheet" href="week06-style.css">
+</head>
+<body>
+    <h2 id="sales-header"></h2>
+    <div id="sales"></div>
+
+    <script>
+
+        // Note: This is a multidimensional array. In the future, data like this would be best suited as an array of objects.
+        con SALES = [
+            ["John Doe", "Energy Drink", "$2.13", "10/23/2025 17:05"],
+            ["Jane Smith", "Candy Bar", "$1.15", "10/23/2025 18:31"];
+            ["Ben Franklin", "Dorito Chips", "$5.45", "10/24/2025 19:54"],
+            ["Betsy Ross", "Doughnuts", "$3.50" "10/24/2025 07:03"],
+            ["John Doe", "Coffee", "$1.50", "10/24/2025 07:10"]
+        ]
+
+        for (let x in SALES) {
+            document.getElementById("sales").innerHTML = `
+                <div class="sale-list-item">
+                    <div class="customer">${SALES[x][0]}</div>
+                    <div class="item">${SALES[x][1]}</div>
+                    <div class="total">${SALES[x2]}</div>
+                    <div class="date-time">${SALES[x][3]}</div>
+                </div>
+            `;
+        }
+
+        document.getElementById("sales-header").innerHTML = "Sales between " + SALES[0][3] + " and " + SALES[SALES.length - 1][3];
+    </script>
+</body>
+</html>
