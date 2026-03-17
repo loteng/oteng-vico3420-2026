@@ -12,7 +12,7 @@
         </style>
         
         <script type="application/javascript">
-            const street;
+            let street;
             let verb01, verb02, verb03;
             let noun01, noun02, noun03;
             let question;
@@ -32,7 +32,7 @@
             emotion = prompt("Provide type of feeling.");
             adjective01 = prompt("Provide a adjective (word to describe something).");
             dodonot = prompt("Either type \"do\" or \"don't\" below.");
-            noun02 = prompt("Provide a noun.";
+            noun02 = prompt("Provide a noun.");
             event = prompt("Provide a type of event.");
             verb03 = prompt("Provide a verb.");
             employeeType = prompt("Provide a type of employee.");
@@ -46,15 +46,19 @@
     </head>
     <body>
         <div>Your story:<br><br></div>
-
-        <script>
-            
-            document.getElementById("container")innerHTML = "<p>I was walking down " + street + " the other day and a student " + verb1 + "ing a " + noun01 + " approached me and asked me, \"" + question + "\" I was " + emotion + ". I couldn't believe a " + adjective01 + " person, who was also " + verb02 + "ing a " + noun02 + " at the time. I said I " + dodonot + " and started walking away since I was late for a " + event + " called \"" + adjective02 + " " + noun03 + ".\" They started following me and started to " + verb03 + ". I found out they were the " + employeeType + " for the event! They snuck me into " + place + " and we have been " + relationship + " ever since!</p>";
-        
-        </script>
         
         <div id="container"></div>
         
+ <script>
+            
+            document.getElementById("container").innerHTML = "<p>I was walking down " + street + " the other day and a student " + verb01 + "ing a " + noun01 + " approached me and asked me, \"" 
+                + question + "\" I was " + emotion + ". I couldn't believe a " + adjective01 + " person, who was also " + verb02 + "ing a " + noun02 + " at the time. I said I " + dodonot 
+                + " and started walking away since I was late for a " + event + " called \"" + adjective02 + " " + noun03 + ".\" They started following me and started to " + verb03 
+                + ". I found out they were the " + employeeType + " for the event! They snuck me into " + place + " and we have been " + relationship + " ever since!</p>";
+        
+        </script>
+
+
         <div>Reload to play again!</div>
     </body>
 </html>
