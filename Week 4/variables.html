@@ -1,0 +1,36 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Document</title>
+	
+	    <script>
+	        let streetName = prompt("Please provide a street name.");
+	        let verb1 = prompt("Please provide a verb (action).");
+	        let noun1 = prompt("Please provide a noun (person, place, or thing).");
+	        let question = prompt("Please provide a question ending with a question mark.");
+	        let emotion = prompt("Please provide an emotion.");
+	        let adjective1 = prompt("Please provide an adjective (description).");
+	        let verb2 = prompt("Please provide a verb (action).");
+	        let noun2 = prompt("Please provide a noun (person, place, or thing).");
+	        let doOrDoNot = prompt("Please type 'do' or 'do not'.");
+	        let event = prompt("Please provide a type of event.");
+	        let adjective2 = prompt("Please provide an adjective (description).");
+	        let noun3 = prompt("Please provide a noun (person, place, or thing).");
+	        let verb3 = prompt("Please provide a verb (action).");
+	        let employeeType = prompt("Please provide a type of employee");
+	        let place = prompt("Please provide a place.");
+	        let relationshipType = prompt("Please provide a type of relationship.");
+	    </script>                
+	</head>
+	<body>
+		<div id="story"></div>
+	
+	    <script>
+	        document.getElementById("story").innerHTML = `
+	                I was walking down ${streetName} the other day, and a student ${verb1}ing a ${noun1} approached me and asked me, "${question}" I was ${emotion}. I couldn't believe a ${adjective1} person, who was also ${verb2}ing a ${noun2} at the time. I said I ${doOrDoNot} and started walking away since I was late for a ${event} called "${adjective2} ${noun3}." They started following me and started to ${verb3}. I found out they were the ${employeeType} for the event! They snuck me into ${place}, and we have been ${relationshipType} ever since!
+	        `;
+	    </script>    
+	</body>
+	</html>

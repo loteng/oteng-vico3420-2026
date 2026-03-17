@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+   <script>
+        alert("Let's add two numbers together!");
+
+        let num1 = Number(prompt("What is your first number?"));
+        let num2 = Number(prompt("What is your second number?"));
+
+        let total = num1 + num2;
+        
+        alert("The numbers added together are: " + total);
+</script>
+
+
+</head>
+<body>
+
+    <div id="msg"></div>
+
+    <script>
+
+        document.write("<p><strong>This text is in a paragraph tag!</strong></p>");
+        document.write("<div style='color: red;'><em>This text is in RED.</em></div>");
+        document.getElementById("msg").innerHTML = "This is the \"msg\" &lt;div&gt; element.";
+    </script>
+    <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+    <p id="demo"></p>
+
+</body>
+</html>
