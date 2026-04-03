@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Which Social Media App Are You?</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      padding: 30px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #resultBox {
+      display: none;  
+      margin-top: 30px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+    }
+    
+
+    img {
+      width: 200px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+
+     button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff6f61;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff4c3b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Which Social Media App Are You?</h1>
+  <button id= "quizButton" onclick="startQuiz()">Start Quiz</button>
+
+  <div id="resultBox">
+    <h2 id="resultText"></h2>
+    <img id="resultImage" src="">
+  </div>
+
+  <script>
+    function startQuiz() {
+    document.getElementById("resultText").innerText = "";
+    document.getElementById("resultImage").src = "";   
+         
+      // variables
+      let answer1;
+      let answer2;
+      let answer3;
+
+      // 3 questions
+      answer1 = prompt("What do you like to do most? (post / chat / watch videos / game)");
+      answer2 = prompt("Are you more social or private? (social / private)");
+      answer3 = prompt("What's your vibe? (fun / creative / chill / serious)");
+
+      // console log
+      if (answer2 === "social") {
+        console.log("You enjoy connecting with people!");
+      }
+
+      if (answer1 === "watch videos") {
+        console.log("You love entertainment!");
+      } else {
+        console.log("You like interacting more!");
+      }
+
+      // results
+      let result = "";
+      let image = "";
+
+      if (answer1 === "post" && answer3 === "creative") {
+        result = "Instagram";
+        image = "images/instagram.png";
+      } else if (answer1 === "watch videos") {
+        result = "TikTok";
+        image = "images/tiktok.png";
+      } else if (answer1 === "chat" && answer2 === "private") {
+        result = "WhatsApp";
+        image = "images/WhatsApp.png";
+      } else if (answer1 === "game") {
+        result = "Discord";
+        image = "images/discord.jpg";
+      } else {
+        result = "Facebook";
+        image = "images/facebook.png";
+      }
+
+      // switch
+      switch(answer1) {
+        case "post":
+          console.log("You like sharing content!");
+          break;
+        case "chat":
+          console.log("You love messaging!");
+          break;
+        case "watch videos":
+          console.log("You enjoy watching content!");
+          break;
+        default:
+          console.log("Interesting choice!");
+      }
+
+      // show result
+      document.getElementById("resultText").innerText = "You are " + result + "!";
+      document.getElementById("resultImage").src = image;
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("quizButton").innerText = "Restart Quiz";
+    }
+  </script>
+
+</body>
+</html>
