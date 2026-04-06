@@ -13,20 +13,20 @@
     <script>
 
         // Note: This is a multidimensional array. In the future, data like this would be best suited as an array of objects.
-        con SALES = [
+        let SALES = [
             ["John Doe", "Energy Drink", "$2.13", "10/23/2025 17:05"],
-            ["Jane Smith", "Candy Bar", "$1.15", "10/23/2025 18:31"];
+            ["Jane Smith", "Candy Bar", "$1.15", "10/23/2025 18:31"],
             ["Ben Franklin", "Dorito Chips", "$5.45", "10/24/2025 19:54"],
-            ["Betsy Ross", "Doughnuts", "$3.50" "10/24/2025 07:03"],
+            ["Betsy Ross", "Doughnuts", "$3.50", "10/24/2025 07:03"],
             ["John Doe", "Coffee", "$1.50", "10/24/2025 07:10"]
         ]
 
-        for (let x in SALES) {
-            document.getElementById("sales").innerHTML = `
+       for (let x in SALES) {
+            document.getElementById("sales").innerHTML += `
                 <div class="sale-list-item">
-                    <div class="customer">${SALES[x][0]}</div>
+                    <div class="customer">${SALES[x][0]}</div> 
                     <div class="item">${SALES[x][1]}</div>
-                    <div class="total">${SALES[x2]}</div>
+                    <div class="total">${SALES[x][2]}</div>
                     <div class="date-time">${SALES[x][3]}</div>
                 </div>
             `;
