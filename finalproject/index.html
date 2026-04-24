@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leticia Oteng — Creative Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== DESKTOP / HOME SCREEN ===== -->
+  <div id="desktop" class="screen active" role="main" aria-label="Portfolio Desktop">
+    <div class="dot-grid" aria-hidden="true"></div>
+
+    <header class="top-bar" role="banner">
+      <a href="#" id="logoHomeBtn" aria-label="Return to home screen">
+        <img src="assets/leticialogo.png" alt="Leticia Oteng logo" class="logo-main" />
+      </a>
+    </header>
+
+    <!-- Big folder on landing -->
+    <div class="landing-folder-wrap" id="landingFolder" role="button" aria-label="Double-click to open portfolio" tabindex="0">
+      <img src="assets/openingfolder.png" alt="Creative Portfolio folder" class="big-folder-img" id="bigFolder" />
+      <p class="hint-text" aria-live="polite">Double click the folder to explore</p>
+      <p class="hint-text hint-sub">on the next screen: drag folders to rearrange &nbsp;·&nbsp; double click to open</p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN EXPLORER SCREEN ===== -->
+
+  <div id="explorer" class="screen" aria-label="Portfolio Explorer" role="region">
+    <div class="dot-grid" aria-hidden="true"></div>
+
+    <header class="top-bar" role="banner">
+      <a href="#" id="logoHomeBtnExplorer" aria-label="Return to home screen">
+        <img src="assets/leticialogo.png" alt="Leticia Oteng logo" class="logo-main" />
+      </a>
+    </header>
+
+    <!-- Sidebar folders -->
+    <nav class="sidebar" role="navigation" aria-label="Portfolio sections">
+      <div class="folder-icon active" data-target="about-window" tabindex="0" role="button" aria-label="Open About Me" draggable="true">
+        <div class="folder-thumb">
+          <div class="folder-thumb-tab"></div>
+          <div class="folder-thumb-body"></div>
+        </div>
+        <span>about me</span>
+      </div>
+      <div class="folder-icon" data-target="design-window" tabindex="0" role="button" aria-label="Open Design projects" draggable="true">
+        <div class="folder-thumb">
+          <div class="folder-thumb-tab"></div>
+          <div class="folder-thumb-body"></div>
+        </div>
+        <span>design</span>
+      </div>
+      <div class="folder-icon" data-target="uiux-window" tabindex="0" role="button" aria-label="Open UI/UX projects" draggable="true">
+        <div class="folder-thumb">
+          <div class="folder-thumb-tab"></div>
+          <div class="folder-thumb-body"></div>
+        </div>
+        <span>ui/ux</span>
+      </div>
+      <div class="folder-icon" data-target="photo-window" tabindex="0" role="button" aria-label="Open Photography" draggable="true">
+        <div class="folder-thumb">
+          <div class="folder-thumb-tab"></div>
+          <div class="folder-thumb-body"></div>
+        </div>
+        <span>photography</span>
+      </div>
+    </nav>
+
+    <!-- WINDOWS -->
+
+    <!-- About Me Window -->
+    <div class="os-window" id="about-window" role="dialog" aria-modal="true" aria-label="About Me" style="left:300px;top:140px;">
+      <div class="window-bar" tabindex="0">
+        <span class="window-title">all about leticia!</span>
+        <button class="window-close" aria-label="Close About Me window">✕</button>
+      </div>
+      <div class="window-body about-body">
+        <div class="about-photo-col">
+          <img src="assets/aboutmepic.JPG" alt="Leticia Oteng seated outdoors against ivy-covered wall" class="about-photo" />
+          <div class="contact-block" aria-label="Contact links">
+            <a href="mailto:letotengg@gmail.com" class="contact-link" aria-label="Email Leticia">
+              <span class="contact-icon">✉</span> letotengg@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/loteng" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Leticia's LinkedIn">
+              <span class="contact-icon">in</span> linkedin.com/in/loteng
+            </a>
+            <a href="https://www.instagram.com/tsvizualdiary_/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Leticia's Instagram">
+              <span class="contact-icon">&#9737;</span> @tsvizualdiary_
+            </a>
+          </div>
+        </div>
+        <div class="about-info-col">
+          <h2>Hi! I'm Leticia Oteng a visual designer from Columbus, Ohio.</h2>
+          <p>I'm passionate about creating clear, engaging, and impactful designs. I aspire to apply myself fully in every project, emphasizing information through a creative yet structured approach.</p>
+          <p>As a problem solver, I thrive on finding ways to improve and elevate projects, always asking: How can I capture attention and ensure instant comprehension at just a glance? Whether through branding, layouts, or digital experiences, my goal is to craft designs that communicate effectively and leave an impression.</p>
+
+          <h3>education</h3>
+          <div class="edu-entry">
+            <div>
+              <strong>Ohio University, Scripps College of Communication</strong> | Athens, OH
+              <div>Bachelor of Science</div>
+              <div>Major: Visual Communication Multimedia</div>
+              <div>Minors: Commercial Photography & Marketing</div>
+            </div>
+            <span class="grad-year">May 2027</span>
+          </div>
+
+          <h3>skills</h3>
+          <div class="skills-row" role="list" aria-label="Software skills">
+            <div class="skill-badge" role="listitem" title="Adobe Photoshop">Ps</div>
+            <div class="skill-badge" role="listitem" title="Adobe Illustrator">Ai</div>
+            <div class="skill-badge" role="listitem" title="Adobe Premiere">Pr</div>
+            <div class="skill-badge" role="listitem" title="Adobe InDesign">Id</div>
+            <div class="skill-badge canva" role="listitem" title="Canva">Canva</div>
+            <div class="skill-badge" role="listitem" title="Figma">&#9651;</div>
+            <div class="skill-badge" role="listitem" title="GitHub">&#9711;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design → ADJEI Window -->
+    <div class="os-window" id="design-window" role="dialog" aria-modal="true" aria-label="ADJEI Design Project" style="left:320px;top:155px;display:none;">
+      <div class="window-bar" tabindex="0">
+        <span class="window-title">adjei</span>
+        <button class="window-close" aria-label="Close ADJEI window">✕</button>
+      </div>
+      <div class="window-body">
+        <p class="project-desc">ADJEI is an Afrobeat dance team I founded as a creative and cultural outlet. From the beginning, I treated ADJEI as a brand, not just a club. My goal was to build a visual identity that felt recognizable, culturally rooted, and sustainable beyond my own involvement.</p>
+        <p class="click-hint" aria-label="Tip">&#128065; click any image to view full size</p>
+        <div class="adjei-gallery" role="list" aria-label="ADJEI brand design work">
+          <img src="assets/adjei1.png" alt="ADJEI Mind Body Movement week flyer" class="adjei-img" role="listitem" />
+          <img src="assets/adjei2.png" alt="ADJEI Mind Body Movement main event poster" class="adjei-img" role="listitem" />
+          <img src="assets/adjei3.png" alt="ADJEI week schedule flyer" class="adjei-img" role="listitem" />
+          <img src="assets/adjei4.png" alt="ADJEI eboard intros graphic, Est. 2024" class="adjei-img" role="listitem" />
+          <img src="assets/adjei5.png" alt="ADJEI A Taste of Africa food fundraiser flyer" class="adjei-img" role="listitem" />
+          <img src="assets/adjei6.png" alt="ADJEI Dance Workshops flyer" class="adjei-img" role="listitem" />
+          <img src="assets/adjei7.png" alt="ADJEI J'Ouvert performance reminder graphic" class="adjei-img" role="listitem" />
+          <img src="assets/adjei8.png" alt="ADJEI Foundations and Flow dance bootcamp flyer" class="adjei-img" role="listitem" />
+          <img src="assets/adjei9.png" alt="ADJEI Grilled Cheese Fundraiser flyer" class="adjei-img" role="listitem" />
+        </div>
+      </div>
+    </div>
+
+    <!-- UI/UX → EUMC Window -->
+    <div class="os-window" id="uiux-window" role="dialog" aria-modal="true" aria-label="EUMC Site Redesign" style="left:340px;top:165px;display:none;">
+      <div class="window-bar" tabindex="0">
+        <span class="window-title">eumc site redesign</span>
+        <button class="window-close" aria-label="Close EUMC window">✕</button>
+      </div>
+      <div class="window-body">
+        <p class="project-desc">This personal project reimagines the Ebenezer United Methodist Church (EUMC) website with a modern, user-friendly design that enhances accessibility and engagement. The redesign focuses on clear navigation, visual hierarchy, and an inviting aesthetic, ensuring that users can easily find information while reflecting the church's values and mission.</p>
+        <div class="eumc-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/-rPr00NawV4"
+            title="EUMC Site Redesign video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photography → Dwelling Window -->
+    <div class="os-window" id="photo-window" role="dialog" aria-modal="true" aria-label="Dwelling Photography Project" style="left:360px;top:175px;display:none;">
+      <div class="window-bar" tabindex="0">
+        <span class="window-title">dwelling</span>
+        <button class="window-close" aria-label="Close Dwelling window">✕</button>
+      </div>
+      <div class="window-body">
+        <p class="project-desc">Dwelling in the Secret Place is a faith-based t-shirt photoshoot inspired by Psalm 91:1. Focused on security, faith, and companionship, the shoot captures both small and large group moments, reflecting confidence, community, and spiritual refuge through atmosphere and composition.</p>
+        <p class="click-hint" aria-label="Tip">&#128065; click any image to view full size</p>
+        <div class="project-grid photo-grid">
+          <div class="photo-mosaic">
+            <div class="photo-row top-row">
+              <img src="assets/dwelling2.jpg" alt="Two models wearing Dwelling shirts in dramatic lighting" class="dwelling-img" />
+              <img src="assets/dwelling6.jpg" alt="Three models on rooftop wearing Dwelling shirts, aerial view" class="dwelling-img" />
+              <img src="assets/dwelling3.jpg" alt="Two models on staircase wearing Dwelling shirts in golden light" class="dwelling-img" />
+              <img src="assets/dwelling4.jpg" alt="Model leaning against wall wearing cream Dwelling tee" class="dwelling-img" />
+            </div>
+            <div class="photo-row bottom-row">
+              <img src="assets/dwelling5.jpg" alt="Group wearing Dwelling shirts showing shirt back design" class="dwelling-img" />
+              <img src="assets/dwelling7.jpg" alt="Three men wearing Dwelling 5th Anniversary shirts" class="dwelling-img" />
+              <img src="assets/dwelling1.jpg" alt="Model at golden hour wearing white Dwelling long-sleeve" class="dwelling-img" />
+            </div>
+          </div>
+          <img src="assets/dwelling1.jpg" alt="Close-up portrait of model in white Dwelling long-sleeve at sunset" class="dwelling-img tall-feature" />
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end #explorer -->
+
+  <script src="script.js"></script>
+</body>
+</html>
