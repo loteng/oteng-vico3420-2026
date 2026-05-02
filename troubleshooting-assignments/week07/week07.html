@@ -16,7 +16,7 @@
     <form id="randomForm" action="" method="get">
         <div class="formField">
             <label for="firstName">What's your first name?</label>
-            <input type="text" id="first Name" name="firstName" onchange="updateCard()">
+            <input type="text" id="firstName" name="firstName" onchange="updateCard()">
         </div>
         <div class="formField">
             <label for="goodDay">Check here if you're having a good day: </label>
@@ -24,16 +24,16 @@
         </div>
         <div class="formField">
             <label>Choose a font style: </label><br>
-            <input type="radio" id="serif" name="fontType" value="serif" checked onclick="updateCard()" onkeyup="updateCard()"> 
+            <input type="radio" id="serif" name="fontType" value="serif" checked onclick="updateCard()"> 
             <label for="serif">Serif</label><br>
-            <input type="radio" id="sans" name="fontStyle" value="sans" onclick="updateCard()"> 
+            <input type="radio" id="sans" name="fontType" value="sans" onclick="updateCard()"> 
             <label for="sans">Sans Serif</label><br>
-            <input type="radio" id="script" name="fontType" value="script"> 
+            <input type="radio" id="script" name="fontType" value="script" onclick="updateCard()"> 
             <label for="script">Script</label>
         </div>
         <div class="formField">
             <label for="textSize">Choose your text size:</label>
-            <select id="textSize" name="textSize" onclick="updateCard()">
+            <select id="textSize" name="textSize" onchange="updateCard()">
                 <option value="small">Small</option>
                 <option value="medium" selected>Medium</option>
                 <option value="large">Large</option>
@@ -41,62 +41,71 @@
         </div>
         <div class="formField">
             <label for="bgcolor">What color are you feeling right now? </label>
-            <input type=="color" id="bgcolor" name="bgcolor" value="#ffffff" onblur="updateCard()">
+            <input type="color" id="bgcolor" name="bgcolor" value="#ffffff" onchange="updateCard()">
         </div>
     </form>
 
     <div id="formResults"></div>
 
     <script>
-
         // Declare global variables
         let fName, isGoodDay, fontType, textSize, bgcolor;
 
         // Prevent accidental submitting when hitting ENTER or RETURN
-        document.forms["randomForm"].addEventListener('submit', function (event) { event.preventDefault();});
+        document.forms["randomForm"].addEventListener('submit', function (event) { 
+            event.preventDefault();
+        });
 
         function updateCard() {
-            // Update the variables from the form values
+            // Update variables from form values
             fName = document.forms["randomForm"].firstName.value;
-            isGoodDay = document.forms["randomForm"].goodDay.value;
+            isGoodDay = document.forms["randomForm"].goodDay.checked;
             fontType = document.forms["randomForm"].fontType.value;
             textSize = document.forms["randomForm"].textSize.value;
             bgcolor = document.forms["randomForm"].bgcolor.value;
 
-            // Clear formResults element
-            document.getElementById("formResults").innerHTML = "";
+            let output = document.getElementById("formResults");
 
-            // Show information in the formResults 
-            if (fName != '' && fName != null) {
-                document.getElementById("formResults").innerHTML = "<p>Hello " + fName + "!</p>";
+            // Clear previous content
+            output.innerHTML = "";
+
+            // Greeting
+            if (fName) {
+                output.innerHTML += "<p>Hello " + fName + "!</p>";
             }
 
-            if (isGoodDay = document.forms["randomForm"].goodDay.checked == true) {
-                document.getElementById("formResults").innerHTML += "<p>I'm glad you're having a good day!</p>";
-            }
-            else {
-                document.getElementById("formResults").innerHTML += "<p>I hope your day gets better!</p>";
+            // Good day message
+            if (isGoodDay) {
+                output.innerHTML += "<p>I'm glad you're having a good day!</p>";
+            } else {
+                output.innerHTML += "<p>I hope your day gets better!</p>";
             }
 
-            // Updates the element to the color chosen
-            document.getElementById("formResults").style.backgroundColor = bgcolor;
+            // Background color
+            output.style.backgroundColor = bgcolor;
 
-            // Updates the font size of the text
-            document.getElementById("formResults").style.fontSize = textSize;
-            
+            // Font size
+            if (textSize === "small") {
+                output.style.fontSize = "12px";
+            } else if (textSize === "medium") {
+                output.style.fontSize = "16px";
+            } else {
+                output.style.fontSize = "20px";
+            }
+
+            // Font family
             switch (fontType) {
                 case "serif":
-                    document.getElementById("formResults").style.fontFamily = "Georgia, Times New Roman, Times, serif";
+                    output.style.fontFamily = "Georgia, Times New Roman, Times, serif";
                     break;
                 case "sans":
-                    document.getElementById("formResults").style.fontFamily = "Arial, sans-serif";
+                    output.style.fontFamily = "Arial, sans-serif";
                     break;
                 case "script":
-                    document.getElementById("formResults").style.fontFamily = "'Courier New', Courier, monospace";
+                    output.style.fontFamily = "'Courier New', Courier, monospace";
                     break;
                 default:
-                    document.getElementById("formResults").style.fontFamily = "Georgia, Times New Roman, Times, serif";
-                    break;
+                    output.style.fontFamily = "Georgia, Times New Roman, Times, serif";
             }
         }
     </script>
