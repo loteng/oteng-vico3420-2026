@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Vibes 🎵</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --surface: #13131a;
+      --card: #1a1a25;
+      --accent: #c8ff57;
+      --accent2: #ff5791;
+      --text: #f0f0f8;
+      --muted: #7c7c9a;
+      --border: rgba(200, 255, 87, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.6;
+    }
+
+    header {
+      padding: 3rem 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1.2rem auto 0;
+    }
+
+    .site-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .site-subtitle {
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+    }
+
+    /* Intro message box */
+    #intro-box {
+      max-width: 680px;
+      margin: 2rem auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.4rem 1.8rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #intro-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Controls section */
+    .controls {
+      max-width: 680px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .control-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      min-width: 80px;
+    }
+
+    select, input[type="number"] {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 0.5rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    select:hover, input[type="number"]:hover {
+      border-color: var(--accent);
+    }
+
+    input[type="number"] { width: 90px; }
+
+    /* Buttons */
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      border: 2px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: scale(1.03);
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn.pink {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    .btn.pink:hover {
+      background: var(--accent2);
+      color: #fff;
+    }
+
+    /* Output messages */
+    .output-msg {
+      max-width: 680px;
+      margin: 0.4rem auto 0;
+      padding: 0 1.5rem;
+      font-size: 0.9rem;
+      color: var(--accent);
+      min-height: 1.4rem;
+      font-style: italic;
+      transition: opacity 0.3s;
+    }
+
+    /* Playlist label + length display */
+    #playlist-label {
+      max-width: 680px;
+      margin: 2.5rem auto 0.6rem;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    #playlist-label h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    #length-badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      transition: all 0.3s;
+    }
+
+    #length-badge.lit {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Song cards grid */
+    .songs-grid {
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .song-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+
+    .song-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border);
+      box-shadow: 0 12px 40px rgba(200,255,87,0.08);
+    }
+
+    .card-top {
+      padding: 1rem 1.2rem 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .genre-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(200,255,87,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(200,255,87,0.25);
+    }
+
+    .mood-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(255,87,145,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(255,87,145,0.25);
+    }
+
+    .song-card iframe {
+      display: block;
+      width: 100%;
+    }
+
+    /* Hover tip */
+    .hover-tip {
+      max-width: 680px;
+      margin: 1rem auto 0;
+      padding: 0 1.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Scrolling marquee at top */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--accent);
+      padding: 0.35rem 0;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 18s linear infinite;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--bg);
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="site-title">Music<br>Vibes</div>
+    <p class="site-subtitle">Your personal playlist curator</p>
+  </header>
+
+  <!-- Intro message (no-parameter function) -->
+  <div id="intro-box"></div>
+
+  <div class="controls">
+
+    <!-- suggestSong: one parameter -->
+    <div class="control-row">
+      <label>Genre</label>
+      <select id="genre-select">
+        <option value="pop">Pop</option>
+        <option value="indie">Indie</option>
+        <option value="r&b">R&amp;B</option>
+        <option value="hip-hop">Hip-Hop</option>
+        <option value="electronic">Electronic</option>
+      </select>
+      <button class="btn" onclick="suggestSong(document.getElementById('genre-select').value)">
+        Suggest Song
+      </button>
+    </div>
+    <div class="output-msg" id="suggest-output"></div>
+
+    <!-- createPlaylist: two parameters -->
+    <div class="control-row">
+      <label>Mood</label>
+      <select id="mood-select">
+        <option value="chill">Chill</option>
+        <option value="hype">Hype</option>
+        <option value="sad">Sad</option>
+        <option value="focused">Focused</option>
+        <option value="happy">Happy</option>
+      </select>
+      <button class="btn pink" onclick="createPlaylist(document.getElementById('genre-select').value, document.getElementById('mood-select').value)">
+        Build Playlist
+      </button>
+    </div>
+    <div class="output-msg" id="playlist-output" style="color: var(--accent2);"></div>
+
+    <!-- getPlaylistLength: returns formatted output -->
+    <div class="control-row">
+      <label>Minutes</label>
+      <input type="number" id="minutes-input" value="30" min="1" max="600" />
+      <button class="btn" onclick="showPlaylistLength()">Get Length</button>
+    </div>
+    <div class="output-msg" id="length-output"></div>
+
+  </div>
+
+  <!-- Playlist section -->
+  <div id="playlist-label">
+    <h2>The Playlist</h2>
+    <span id="length-badge">4 tracks</span>
+  </div>
+
+  <p class="hover-tip">✦ Hover over a card to lift it — click a player to start listening.</p>
+
+  <div class="songs-grid" id="songs-grid">
+    <!-- Cards injected by JS -->
+  </div>
+
+  <footer>Music Vibes Page &nbsp;|&nbsp; Functions Assignment</footer>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // Songs
+    // ─────────────────────────────────────────────
+    const songs = [
+      {
+        embedSrc: "https://open.spotify.com/embed/track/6EstomtQJkk4F0pS6qX5NS?utm_source=generator",
+        genre: "pop",
+        mood: "happy"
+      },
+      {
+        embedSrc: "https://open.spotify.com/embed/track/1fOkmYW3ZFkkjIdOZSf596?utm_source=generator",
+        genre: "indie",
+        mood: "chill"
+      },
+      {
+        embedSrc: "https://open.spotify.com/embed/track/0SjQBdIddPvKSWxr8vk6QX?utm_source=generator",
+        genre: "r&b",
+        mood: "sad"
+      },
+      {
+        embedSrc: "https://open.spotify.com/embed/track/6ZmI0Joq5BJB5jLAnNSmVO?utm_source=generator",
+        genre: "hip-hop",
+        mood: "hype"
+      }
+    ];
+
+    // ─────────────────────────────────────────────
+    // 1. No-parameter function: introMessage()
+    //    Displays a welcome message on the page.
+    // ─────────────────────────────────────────────
+    function introMessage() {
+      const box = document.getElementById("intro-box");
+      box.innerHTML = `
+        Welcome to <strong>Music Vibes</strong> — your personal playlist hub. 🎧<br>
+        Pick a genre and mood below to get song suggestions, build a playlist label,
+        or calculate how long your listening session would be. Then hit play on any track!
+      `;
+      // Trigger fade-in
+      setTimeout(() => box.classList.add("visible"), 50);
+    }
+
+    // ─────────────────────────────────────────────
+    // 2. One-parameter function: suggestSong(genre)
+    //    Suggests a listening tip based on genre.
+    // ─────────────────────────────────────────────
+    function suggestSong(genre) {
+      const tips = {
+        "pop":        "🎤 Pop pick: upbeat and catchy — great for a morning boost!",
+        "indie":      "🌿 Indie pick: dreamy and atmospheric — perfect for a rainy day.",
+        "r&b":        "🔥 R&B pick: smooth and soulful — set the mood right.",
+        "hip-hop":    "🎤 Hip-Hop pick: bars and beats — turn it up loud.",
+        "electronic": "⚡ Electronic pick: synths and drops — ideal for late-night coding."
+      };
+      const msg = tips[genre] || `🎵 No specific tip for "${genre}" yet — just press play!`;
+      document.getElementById("suggest-output").textContent = msg;
+    }
+
+    // ─────────────────────────────────────────────
+    // 3. Two-parameter function: createPlaylist(genre, mood)
+    //    Builds a playlist name + description and updates the label.
+    // ─────────────────────────────────────────────
+    function createPlaylist(genre, mood) {
+      const name = `${capitalize(mood)} ${capitalize(genre)} Mix`;
+      const descriptions = {
+        "chill":   "Lay back and let the music carry you.",
+        "hype":    "Turn it up — maximum energy mode activated.",
+        "sad":     "For when you need to feel all the feelings.",
+        "focused": "Zone in. Distractions: blocked.",
+        "happy":   "Good vibes, great tunes, zero worries."
+      };
+      const desc = descriptions[mood] || "Curated just for you.";
+      document.getElementById("playlist-output").textContent =
+        `✦ Playlist created: "${name}" — ${desc}`;
+      document.getElementById("playlist-label").querySelector("h2").textContent = name;
+    }
+
+    // ─────────────────────────────────────────────
+    // 4. Return function: getPlaylistLength(minutes)
+    //    Returns a formatted string like "2 hr 15 min".
+    // ─────────────────────────────────────────────
+    function getPlaylistLength(minutes) {
+      if (minutes < 60) {
+        return `${minutes} min`;
+      }
+      const hrs = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+      return mins > 0 ? `${hrs} hr ${mins} min` : `${hrs} hr`;
+    }
+
+    // Helper to call getPlaylistLength() and display result (used by button)
+    function showPlaylistLength() {
+      const mins = parseInt(document.getElementById("minutes-input").value) || 0;
+      const formatted = getPlaylistLength(mins);    // ← return value captured here
+      document.getElementById("length-output").textContent =
+        `⏱ Your playlist runs for: ${formatted}`;
+
+      const badge = document.getElementById("length-badge");
+      badge.textContent = formatted;
+      badge.classList.add("lit");
+    }
+
+    // ─────────────────────────────────────────────
+    // Helper: capitalize first letter
+    // ─────────────────────────────────────────────
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // ─────────────────────────────────────────────
+    // Render song cards
+    // ─────────────────────────────────────────────
+    function renderSongs() {
+      const grid = document.getElementById("songs-grid");
+      songs.forEach(song => {
+        const card = document.createElement("div");
+        card.className = "song-card";
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="genre-pill">${song.genre}</span>
+            <span class="mood-pill">${song.mood}</span>
+          </div>
+          <iframe
+            style="border-radius:0 0 16px 16px"
+            src="${song.embedSrc}"
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // BONUS: Hover interaction on the playlist label
+    // Changes badge color on hover (via JS, not just CSS)
+    // ─────────────────────────────────────────────
+    document.addEventListener("DOMContentLoaded", () => {
+      const label = document.getElementById("playlist-label");
+      label.addEventListener("mouseenter", function() {
+        this.querySelector("h2").style.color = "var(--accent)";
+      });
+      label.addEventListener("mouseleave", function() {
+        this.querySelector("h2").style.color = "var(--text)";
+      });
+    });
+
+    // ─────────────────────────────────────────────
+    // On page load: call introMessage() and render
+    // ─────────────────────────────────────────────
+    introMessage();   // ← no-parameter function called
+    renderSongs();
+  </script>
+</body>
+</html>
