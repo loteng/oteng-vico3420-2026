@@ -16,7 +16,14 @@ function $$(sel, ctx = document) { return [...ctx.querySelectorAll(sel)]; }
 const desktop  = $('#desktop');
 const explorer = $('#explorer');
 
+/* ---- SOUND EFFECTS ---- */
+const sfxFairy  = new Audio('sounds/fairydust.mp3');
+const sfxBubble = new Audio('sounds/bubblepop.mp3');
+function playFairy()  { sfxFairy.currentTime  = 3; sfxFairy.play().catch(() => {}); }
+function playBubble() { sfxBubble.currentTime = 1.8; sfxBubble.play().catch(() => {}); }
+
 function showExplorer() {
+  playFairy();
   desktop.classList.remove('active');
   explorer.classList.add('active');
 }
@@ -57,27 +64,15 @@ const folderIcons = $$('.folder-icon');
 
 // Track click timing per folder for double-click detection on touch/mouse
 folderIcons.forEach(icon => {
-  let clicks = 0, timer;
-
-  function activate() {
-    clicks++;
-    clearTimeout(timer);
-    timer = setTimeout(() => { clicks = 0; }, 450);
-    if (clicks >= 2) {
-      clicks = 0;
-      openWindow(icon.dataset.target);
-      setActiveFolder(icon);
-    }
-  }
-
-  icon.addEventListener('dblclick', () => {
+  icon.addEventListener('click', () => {
+    playBubble();
     openWindow(icon.dataset.target);
     setActiveFolder(icon);
   });
-  icon.addEventListener('click', activate);
   icon.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      playBubble();
       openWindow(icon.dataset.target);
       setActiveFolder(icon);
     }

@@ -299,10 +299,7 @@ html, body {
   padding: 7px 11px;
   border-radius: 8px;
   letter-spacing: .5px;
-  cursor: default;
-  transition: transform .1s;
 }
-.skill-badge:hover { transform: scale(1.08); }
 
 /* ============================================================
    PROJECT WINDOWS
