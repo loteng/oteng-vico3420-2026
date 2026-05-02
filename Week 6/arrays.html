@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f9f4ee;
+      --blush: #e8c9b8;
+      --clay: #c97b5a;
+      --bark: #3b2a20;
+      --sage: #8fa88a;
+      --white: #ffffff;
+      --shadow: rgba(59, 42, 32, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--bark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--bark);
+      color: var(--cream);
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,123,90,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-top: 0.5rem;
+      position: relative;
+    }
+
+    /* ── SECTIONS ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    section {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: 1.6rem;
+      border-bottom: 1px solid var(--blush);
+      padding-bottom: 0.8rem;
+    }
+
+    /* ── SORTED LIST ── */
+    #brand-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    #brand-list li {
+      background: var(--white);
+      border: 1px solid var(--blush);
+      border-radius: 100px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: background 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    #brand-list li:hover {
+      background: var(--blush);
+      transform: translateY(-2px);
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .thumb-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px var(--shadow);
+      border: 2px solid var(--white);
+      transition: transform 0.25s, box-shadow 0.25s;
+      background: var(--white);
+    }
+
+    .thumb-wrap:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 28px rgba(59,42,32,0.2);
+    }
+
+    .thumb-wrap a {
+      display: block;
+      line-height: 0;
+    }
+
+    .thumb-wrap img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb-caption {
+      padding: 0.5rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--clay);
+      text-align: center;
+      background: var(--white);
+    }
+
+    /* ── NAV MENU ── */
+    #nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    #nav-menu a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      color: var(--bark);
+      background: var(--white);
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    #nav-menu a:hover {
+      background: var(--clay);
+      color: var(--white);
+      border-color: var(--clay);
+      transform: translateY(-2px);
+    }
+
+    #nav-menu a::after {
+      content: '↗';
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--clay);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--blush);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Brand Board</h1>
+  <p>The brands I love all in one place.</p>
+</header>
+
+<main>
+
+  <!-- ── SECTION 1: SORTED LIST ── -->
+  <section>
+    <p class="section-label">Section 01</p>
+    <h2 class="section-title">Favorite Brands — Sorted A–Z</h2>
+    <ul id="brand-list"></ul>
+  </section>
+
+  <!-- ── SECTION 2: THUMBNAIL GALLERY ── -->
+  <section>
+    <p class="section-label">Section 02</p>
+    <h2 class="section-title">Thumbnail Gallery</h2>
+    <div id="gallery"></div>
+  </section>
+
+  <!-- ── SECTION 3: NAVIGATION MENU ── -->
+  <section>
+    <p class="section-label">Section 03</p>
+    <h2 class="section-title">Brand Links Menu</h2>
+    <nav id="nav-menu"></nav>
+  </section>
+
+</main>
+
+<footer>my brand board</footer>
+
+<script>
+  // ── ARRAY 1: Brand names list ──────────────────────────────────────────────
+  const brands = [
+    "Poppi",
+    "Rhode Beauty",
+    "Pinterest",
+    "Aelfric Eden",
+    "New Balance"
+  ];
+
+  // Sort alphabetically, then display using a for loop
+  const sortedBrands = brands.slice().sort();
+  const brandList = document.getElementById("brand-list");
+
+  for (let i = 0; i < sortedBrands.length; i++) {
+    const li = document.createElement("li");
+    li.textContent = sortedBrands[i];
+    brandList.appendChild(li);
+  }
+
+
+  // ── ARRAY 2: Image URLs ────────────────────────────────────────────────────
+  // Using official/public brand image assets
+  const images = [
+    {
+      src: "poppi.jpg",
+      alt: "Poppi",
+      full: "poppi.jpg"
+    },
+    {
+      src: "pinterest.jpg",
+      alt: "Pinterest",
+      full: "pinterest.jpg"
+    },
+    {
+      src: "newbalance.jpg",
+      alt: "New Balance",
+      full: "newbalance.jpg"
+    },
+    {
+      src: "rhode.jpg",
+      alt: "Rhode Beauty",
+      full: "rhode.jpg"
+    },
+    {
+      src: "aelferic.jpg",
+      alt: "Aelfric Eden",
+      full: "aelferic.jpg"
+    }
+  ];
+
+  // Display thumbnails using a while loop (bonus: clicking opens full image)
+  const gallery = document.getElementById("gallery");
+  let j = 0;
+  while (j < images.length) {
+    const wrap = document.createElement("div");
+    wrap.className = "thumb-wrap";
+
+    // Bonus: thumbnail links to the full-size image
+    const link = document.createElement("a");
+    link.href = images[j].full;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const img = document.createElement("img");
+    img.src = images[j].src;
+    img.alt = images[j].alt;
+    img.width = 180;
+
+    const caption = document.createElement("div");
+    caption.className = "thumb-caption";
+    caption.textContent = images[j].alt;
+
+    link.appendChild(img);
+    wrap.appendChild(link);
+    wrap.appendChild(caption);
+    gallery.appendChild(wrap);
+
+    j++;
+  }
+
+
+  // ── ARRAY 3: Multidimensional links array ──────────────────────────────────
+  const menuLinks = [
+    ["Poppi Soda", "https://drinkpoppi.com"],
+    ["Rhode Beauty", "https://rhodeskin.com"],
+    ["Pinterest", "https://pinterest.com"],
+    ["Aelfric Eden", "https://aelfriceden.com"],
+    ["New Balance", "https://newbalance.com"]
+  ];
+
+  // Display nav menu using a for...of loop
+  const navMenu = document.getElementById("nav-menu");
+
+  for (const item of menuLinks) {
+    const a = document.createElement("a");
+    a.textContent = item[0];   // text is index 0
+    a.href = item[1];          // url is index 1
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    navMenu.appendChild(a);
+  }
+</script>
+
+</body>
+</html>
